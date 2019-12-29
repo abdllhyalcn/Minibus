@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="20dp"
+
+        android:layout_marginBottom="20dp">
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:checkedButton="@+id/trafik_cok"
+            android:divider="?android:attr/dividerHorizontal"
+            android:orientation="vertical"
+            android:showDividers="middle">
+
+            <RadioButton
+                android:id="@+id/trafik_cok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_trafik" />
+
+            <RadioButton
+                android:id="@+id/polis_var"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_polis" />
+
+            <RadioButton
+                android:id="@+id/yol_tadilat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_tadilat" />
+
+            <RadioButton
+                android:id="@+id/kaza_yapti"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_kaza" />
+
+            <RadioButton
+                android:id="@+id/ozel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/desc_ozel" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/custom_notfy_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:hint="@string/hint_custom_notfy"
+                android:visibility="gone"
+                app:errorEnabled="true">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/custom_notfy_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </RadioGroup>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:text="@string/submit_notfy" />
+
+
+</LinearLayout>

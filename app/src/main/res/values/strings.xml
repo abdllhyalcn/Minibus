@@ -1,0 +1,65 @@
+<resources>
+    <string name="app_name">Minibus</string>
+
+    <string name="launch_activity">Uygulamayı Aç</string>
+    <string name="location_unknown">Location unknown</string>
+    <string name="location_updates_label">Location Updates</string>
+
+    <string name="permission_rationale">Location permission is needed for core functionality</string>
+    <string name="permission_denied_explanation">Permission was denied, but is needed for core
+        functionality.</string>
+    <string name="settings">Settings</string>
+    <string name="ok">OK</string>
+    <string name="request_location_updates">Başla</string>
+    <string name="remove_location_updates">Bitir</string>
+
+    <string name="location_updated">Lokasyon Güncellendi: %1$s</string>
+
+
+    //Login Strings
+    <string name="login_msg">Kişisel bilgilerinizle giriş yapmak için, aşağıdaki alanı kullanabilirsiniz!</string>
+    <string name="hint_username">Kullanıcı Adı</string>
+    <string name="hint_password">Şifre</string>
+    <string name="remember_me">Beni Hatırla</string>
+    <string name="button_login">Giriş Yap</string>
+    <string name="button_forgot_password">Parolamı Unuttum</string>
+    <string name="minimum_email">Kullanıcı adınızı giriniz!</string>
+    <string name="minimum_password">Şifre çok kısa, minimum 6 karakter giriniz!</string>
+    <string name="auth_failed">Giriş Başarısız, Kullanıcı Adı ve Şifrenizi kontrol ediniz!</string>
+
+    <string name="change_email">Change Email</string>
+    <string name="change_password">Change Password</string>
+    <string name="new_pass">New Password</string>
+
+
+    //Bottom Navigation Elements
+    <string name="title_location">Konum</string>
+    <string name="title_map">Harita</string>
+    <string name="title_information">Bilgilendirme</string>
+    <string name="title_settings">Ayarlar</string>
+    <string name="title_activity_main_navigation">MainNavigationActivity</string>
+
+    //Notification Informations
+    <string name="desc_trafik">Güzergah üstünde trafik yoğun!</string>
+    <string name="desc_polis">Güzergah üstünde polis kontrolü bulunmakta!</string>
+    <string name="desc_tadilat">Güzergah üstünde tadilat çalışması var!</string>
+    <string name="desc_kaza">Aracım kaza yaptı!</string>
+    <string name="desc_ozel">Özel bildirim yap.</string>
+    <string name="submit_notfy">Gönder</string>
+    <string name="hint_custom_notfy">Bildirim Mesajı</string>
+
+    //Back4App Meta-Datas
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <!-- Change the following strings as required -->
+    <string name="back4app_app_id">Jg38e5xEYVwIf1MFSv1L8xWkrZF3UFOdoarDS5fn</string>
+    <string name="back4app_client_key">vrKYXUs9cdNwNUYjwEkTTxfu5I9G5CXAUleUgjqD</string>
+    <string name="gcm_sender_id">721951778863</string>
+
+
+
+    <string name="transport_id" translatable="false">123</string>
+    <string name="firebase_path" translatable="false">locations</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>
