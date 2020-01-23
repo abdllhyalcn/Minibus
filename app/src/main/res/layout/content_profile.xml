@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/fragment_settings">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp">
+
+            <TextView
+                style="@style/headerText"
+                android:layout_width="wrap_content"
+                android:text="Hesabım" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_toStartOf="@+id/btn_sign_out"
+                android:layout_toLeftOf="@+id/btn_sign_out"
+                android:visibility="invisible" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sign_out"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end"
+                android:text="@string/btn_sign_out" />
+
+        </RelativeLayout>
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/nameImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_name" />
+
+            <TextView
+                android:id="@+id/nameTextView"
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/nameImageView"
+                android:text="Sürücü"
+                android:layout_toEndOf="@id/nameImageView" />
+
+            <TextView
+                android:id="@+id/surucu_id"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/nameImageView"
+                android:text="null"
+                android:layout_toEndOf="@id/nameImageView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_surucu_no"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/btn_surucu"
+                android:visibility="gone"
+                app:icon="@drawable/ic_action_close"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                android:layout_toStartOf="@+id/btn_surucu" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_surucu"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:icon="@drawable/ic_action_arrange"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_surucu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_surucu"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_surucu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/mobileImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_mobile" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="Araç Plakası"
+                android:layout_toEndOf="@id/mobileImageView" />
+
+            <TextView
+                android:id="@+id/plaka_id"
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/mobileImageView"
+                android:text="null"
+                android:layout_toEndOf="@id/mobileImageView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_plaka_no"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/btn_plaka"
+                android:visibility="gone"
+                app:icon="@drawable/ic_action_close"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                android:layout_toStartOf="@+id/btn_plaka" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_plaka"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:icon="@drawable/ic_action_arrange"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_plaka"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_plaka"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_plaka"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_email" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="Şifre"
+                android:layout_toEndOf="@id/emailImageView" />
+
+            <TextView
+                style="@style/profileDetailsMiniText"
+                android:layout_toRightOf="@id/emailImageView"
+                android:text="*********"
+                android:layout_toEndOf="@id/emailImageView" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sifre_no"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/btn_sifre"
+                android:visibility="gone"
+                app:icon="@drawable/ic_action_close"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp"
+                android:layout_toStartOf="@+id/btn_sifre" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sifre"
+                style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                app:icon="@drawable/ic_action_arrange"
+                app:iconGravity="textEnd"
+                app:iconPadding="0dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout_sifre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_sifre"
+                android:visibility="gone">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edittext_sifre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <View style="@style/proifleDetailsView" />
+
+        <View style="@style/proifleDetailsView" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

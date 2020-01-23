@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/row_padding_vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/row_padding_vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/baslangic_tarih_layout">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_location_on" />
+
+        <TextView
+            android:id="@+id/baslangic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/imageView"
+            android:text="Başlangıç Adres: "
+            android:textColor="@color/title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/baslangic_adres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="null"
+            android:textColor="@color/title"
+            android:layout_toRightOf="@id/baslangic"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bastarih_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/baslangic_tarih_layout">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_time" />
+
+        <TextView
+            android:id="@+id/bastarih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Başlangıç Tarih: "
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/imageView2"/>
+
+        <TextView
+            android:id="@+id/baslangic_tarih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="null"
+            android:textColor="@color/title"
+            android:layout_toRightOf="@+id/bastarih"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bitis_adres_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bastarih_layout"
+        android:layout_marginTop="12dp">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_location_off" />
+
+        <TextView
+            android:id="@+id/bitis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/imageView3"
+            android:text="Bitiş Adres: "
+            android:textColor="@color/title"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/bitis_adres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/bitis"
+            android:text="null"
+            android:textColor="@color/title" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bittarih_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bitis_adres_layout">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_action_time" />
+
+        <TextView
+            android:id="@+id/bittarih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Başlangıç Tarih: "
+            android:textColor="@color/title"
+            android:textStyle="bold"
+            android:layout_toRightOf="@+id/imageView4"/>
+
+        <TextView
+            android:id="@+id/bitis_tarih"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="null"
+            android:textColor="@color/title"
+            android:layout_toRightOf="@+id/bittarih"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

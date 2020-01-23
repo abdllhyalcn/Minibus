@@ -2,15 +2,12 @@
     <string name="app_name">Minibus</string>
 
     <string name="launch_activity">Uygulamayı Aç</string>
-    <string name="location_unknown">Location unknown</string>
-    <string name="location_updates_label">Location Updates</string>
 
     <string name="permission_rationale">Location permission is needed for core functionality</string>
     <string name="permission_denied_explanation">Permission was denied, but is needed for core
         functionality.</string>
     <string name="settings">Settings</string>
     <string name="ok">OK</string>
-    <string name="request_location_updates">Başla</string>
     <string name="remove_location_updates">Bitir</string>
 
     <string name="location_updated">Lokasyon Güncellendi: %1$s</string>
@@ -27,10 +24,6 @@
     <string name="minimum_password">Şifre çok kısa, minimum 6 karakter giriniz!</string>
     <string name="auth_failed">Giriş Başarısız, Kullanıcı Adı ve Şifrenizi kontrol ediniz!</string>
 
-    <string name="change_email">Change Email</string>
-    <string name="change_password">Change Password</string>
-    <string name="new_pass">New Password</string>
-
 
     //Bottom Navigation Elements
     <string name="title_location">Konum</string>
@@ -38,7 +31,6 @@
     <string name="title_information">Bilgilendirme</string>
     <string name="title_report">Raporlama</string>
     <string name="title_settings">Ayarlar</string>
-    <string name="title_activity_main_navigation">MainNavigationActivity</string>
 
     //Notification Informations
     <string name="desc_trafik">Güzergah üstünde trafik yoğun!</string>
@@ -57,11 +49,8 @@
     <string name="gcm_sender_id">721951778863</string>
 
 
-
-    <string name="transport_id" translatable="false">123</string>
     <string name="firebase_location_path" translatable="false">locations</string>
     <string name="firebase_report_path" translatable="false">reports</string>
-    <string name="title_activity_maps">Map</string>
 
     //Setting Informations
     <string name="btn_sign_out">Çıkış Yap</string>

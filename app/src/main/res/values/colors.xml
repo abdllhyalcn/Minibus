@@ -4,23 +4,15 @@
     <color name="colorPrimary">#FF0000</color>
     <color name="colorPrimaryDark">#DADCE0</color>
     <color name="colorAccent">#FFFF00</color>
-    <color name="toolbarIconColor">#FFFFFF</color>
-    <color name="loginPageBackgroundColor">#FFFFFF</color>
 
-
-
-    <color name="bgBottomNavigation">#fe485a</color>
 
     <!--colors for profile-->
     <color name="profilePrimaryDark">#FF3B30</color>
     <color name="profileAccentColor">#F7F7F7</color>
-    <color name="whiteTextColor">#fff</color>
     <color name="profileBackground">#fff</color>
     <color name="blackTextColor">#000</color>
-    <color name="profileEditTextColor">#707070</color>
 
 
-    <color name="year">#999999</color>
     <color name="title">#222222</color>
 
 
