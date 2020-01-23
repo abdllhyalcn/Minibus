@@ -1,7 +1,7 @@
 package com.example.minibus;
 
 import android.content.Context;
-import android.location.Location;
+import android.location.Address;
 import android.preference.PreferenceManager;
 
 import java.text.DateFormat;
@@ -33,15 +33,19 @@ public class Utils {
 
     /**
      * Returns the {@code location} object as a human readable string.
-     * @param location  The {@link Location}.
+     * @param context  The {@link Context}.
      */
-    public static String getLocationText(Location location) {
-        return location == null ? "Unknown location" :
-                "(" + location.getLatitude() + ", " + location.getLongitude() + ")";
+    public static String getLocationText(LocationData location, Context context) {
+        Address address=location.getLocationAddress(context);
+        return address==null? "Bilinmeyen Konum" :
+                address.getAddressLine(0);
     }
 
     public static String getLocationTitle(Context context) {
         return context.getString(R.string.location_updated,
                 DateFormat.getDateTimeInstance().format(new Date()));
+
     }
+
+
 }

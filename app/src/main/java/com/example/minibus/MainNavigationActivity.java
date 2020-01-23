@@ -9,7 +9,6 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -17,11 +16,6 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +25,9 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 public class MainNavigationActivity extends AppCompatActivity implements
         SharedPreferences.OnSharedPreferenceChangeListener{
@@ -81,11 +78,11 @@ public class MainNavigationActivity extends AppCompatActivity implements
                 R.id.navigation_track, R.id.navigation_map, R.id.navigation_information, R.id.navigation_settings)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+       // NavigationUI.setupActionBarWithNavController(this, navController);
         NavigationUI.setupWithNavController(navView, navController);
 
 
-        Toast.makeText(getApplicationContext(),"Created",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Created",Toast.LENGTH_SHORT).show();
         myReceiver = new MyReceiver();
 
         // Check that the user hasn't revoked permissions by going to Settings.
@@ -113,29 +110,6 @@ public class MainNavigationActivity extends AppCompatActivity implements
         super.onStart();
         PreferenceManager.getDefaultSharedPreferences(this)
                 .registerOnSharedPreferenceChangeListener(this);
-
-
-
-        /*mRequestLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (checkPermissions()) {
-                    requestPermissions();
-                } else {
-                    mService.requestLocationUpdates();
-                }
-            }
-        });
-
-        mRemoveLocationUpdatesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mService.removeLocationUpdates();
-            }
-        });
-
-        // Restore the state of the buttons when the activity (re)launches.
-        setButtonsState(Utils.requestingLocationUpdates(this));*/
 
         // Bind to the service. If the service is in foreground mode, this signals to the service
         // that since this activity is in the foreground, the service can exit foreground mode.
@@ -259,10 +233,10 @@ public class MainNavigationActivity extends AppCompatActivity implements
     private class MyReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Location location = intent.getParcelableExtra(LocationUpdatesService.EXTRA_LOCATION);
+            LocationData location = intent.getParcelableExtra(LocationUpdatesService.EXTRA_LOCATION);
             if (location != null) {
-                Toast.makeText(MainNavigationActivity.this, Utils.getLocationText(location),
-                        Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainNavigationActivity.this, Utils.getLocationText(location,getApplicationContext()),
+                  //      Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -24,9 +24,15 @@
         tools:layout="@layout/fragment_information" />
 
     <fragment
+        android:id="@+id/navigation_report"
+        android:name="com.example.minibus.ui.report.ReportFragment"
+        android:label="@string/title_report"
+        tools:layout="@layout/fragment_report" />
+
+    <fragment
         android:id="@+id/navigation_settings"
         android:name="com.example.minibus.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
-        tools:layout="@layout/fragment_settings" />
+        tools:layout="@layout/fragment_settings"/>
 
 </navigation>

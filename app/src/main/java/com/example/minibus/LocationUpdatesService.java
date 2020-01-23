@@ -33,9 +33,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.text.DateFormat;
-import java.util.Date;
-
 public class LocationUpdatesService extends Service {
     private static final String PACKAGE_NAME =
             "com.example.minibus";
@@ -49,7 +46,7 @@ public class LocationUpdatesService extends Service {
 
     static final String ACTION_BROADCAST = PACKAGE_NAME + ".broadcast";
 
-    static final String EXTRA_LOCATION = PACKAGE_NAME + ".location";
+    public static final String EXTRA_LOCATION = PACKAGE_NAME + ".location";
     private static final String EXTRA_STARTED_FROM_NOTIFICATION = PACKAGE_NAME +
             ".started_from_notification";
 
@@ -101,11 +98,13 @@ public class LocationUpdatesService extends Service {
     /**
      * The current location.
      */
-    private Location mLocation;
+    private LocationData mLocation;
+    private Report mReport;
 
-    private DatabaseReference databaseReference;
+    private DatabaseReference databaseLocationReference, databaseReportReference;
 
-    private LocationData locationData;
+
+
 
     public LocationUpdatesService() {
     }
@@ -123,7 +122,7 @@ public class LocationUpdatesService extends Service {
         };
 
         createLocationRequest();
-        getLastLocation();
+       // getLastLocation();
 
         HandlerThread handlerThread = new HandlerThread(TAG);
         handlerThread.start();
@@ -150,11 +149,13 @@ public class LocationUpdatesService extends Service {
 
         /*Firebase Inıtıalizations
          * */
-        //String authEmail=FirebaseAuth.getInstance().getCurrentUser().getEmail().
-  //              substring(0 , FirebaseAuth.getInstance().getCurrentUser().getEmail().indexOf('@'));
+        String authEmail=FirebaseAuth.getInstance().getCurrentUser().getEmail().
+                substring(0 , FirebaseAuth.getInstance().getCurrentUser().getEmail().indexOf('@'));
 
-        //final String path = getString(R.string.firebase_path) +"/"+authEmail;
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(path);
+        String path = getString(R.string.firebase_location_path) +"/"+authEmail;
+        databaseLocationReference = FirebaseDatabase.getInstance().getReference(path);
+        path=getString(R.string.firebase_report_path)+'/'+authEmail;
+        databaseReportReference=FirebaseDatabase.getInstance().getReference(path);
 
 
         boolean startedFromNotification = intent.getBooleanExtra(EXTRA_STARTED_FROM_NOTIFICATION,
@@ -228,10 +229,13 @@ public class LocationUpdatesService extends Service {
         try {
             mFusedLocationClient.requestLocationUpdates(mLocationRequest,
                     mLocationCallback, Looper.myLooper());
+
         } catch (SecurityException unlikely) {
             Utils.setRequestingLocationUpdates(this, false);
             Log.e(TAG, "Lost location permission. Could not request updates. " + unlikely);
         }
+
+
     }
 
     /**
@@ -243,15 +247,13 @@ public class LocationUpdatesService extends Service {
         try {
             mFusedLocationClient.removeLocationUpdates(mLocationCallback);
             Utils.setRequestingLocationUpdates(this, false);
+
+            databaseLocationReference.removeValue();
+            mReport.setFinishAddress(Utils.getLocationText(mLocation,getApplicationContext()));
+            mReport.setFinishDate(System.currentTimeMillis());
+            databaseReportReference.push().setValue(mReport);
             stopSelf();
-            final String path = "locations" + "/" + "26m0008";
 
-            //LocationData user = new LocationData("Ravi Tamada", "ravi@androidhive.info");
-
-
-
-            DatabaseReference ref = FirebaseDatabase.getInstance().getReference(path);
-            ref.removeValue();
         } catch (SecurityException unlikely) {
             Utils.setRequestingLocationUpdates(this, true);
             Log.e(TAG, "Lost location permission. Could not remove updates. " + unlikely);
@@ -264,7 +266,7 @@ public class LocationUpdatesService extends Service {
     private Notification getNotification() {
         Intent intent = new Intent(this, LocationUpdatesService.class);
 
-        CharSequence text = Utils.getLocationText(mLocation);
+        CharSequence text = Utils.getLocationText(mLocation,getApplicationContext());
 
         // Extra to help us figure out if we arrived in onStartCommand via the notification or not.
         intent.putExtra(EXTRA_STARTED_FROM_NOTIFICATION, true);
@@ -305,7 +307,7 @@ public class LocationUpdatesService extends Service {
                         @Override
                         public void onComplete(@NonNull Task<Location> task) {
                             if (task.isSuccessful() && task.getResult() != null) {
-                                mLocation = task.getResult();
+                             //   mLocation = task.getResult();
                             } else {
                                 Log.w(TAG, "Failed to get location.");
                             }
@@ -316,28 +318,25 @@ public class LocationUpdatesService extends Service {
         }
     }
 
-
+    private boolean justone=true;
     private void onNewLocation(Location location) {
         Log.i(TAG, "New location: " + location);
-/*
-        locationData.setLatitude(location.getLatitude());
-        locationData.setLongtitude(location.getLongitude());
-        locationData.setSpeed(location.getSpeed());
-        locationData.setTime(DateFormat.getDateTimeInstance().format(new Date()));*/
 
-        mLocation = location;
-        final String path = "locations" + "/" + "26m0008";
+      // Map<String, Utils.LocationData> locationDataHashMap = new HashMap<>();
 
-        //LocationData user = new LocationData("Ravi Tamada", "ravi@androidhive.info");
+        mLocation=new LocationData(location.getLatitude(),location.getLongitude(),location.getSpeed(),System.currentTimeMillis());
 
+        databaseLocationReference.setValue(mLocation);
 
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(path);
-        ref.setValue(location);
-
+        if(justone){
+            mReport=new Report();
+            mReport.setStartAddress(Utils.getLocationText(mLocation,getApplicationContext()));
+            mReport.setStartDate(System.currentTimeMillis());
+            justone=!justone;
+        }
         // Notify anyone listening for broadcasts about the new location.
         Intent intent = new Intent(ACTION_BROADCAST);
-        intent.putExtra(EXTRA_LOCATION, location);
+        intent.putExtra(EXTRA_LOCATION, mLocation);
         LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(intent);
 
         // Update notification content if running as a foreground service.
@@ -384,4 +383,7 @@ public class LocationUpdatesService extends Service {
         }
         return false;
     }
+
+
+
 }

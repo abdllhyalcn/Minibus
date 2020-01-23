@@ -36,6 +36,7 @@
     <string name="title_location">Konum</string>
     <string name="title_map">Harita</string>
     <string name="title_information">Bilgilendirme</string>
+    <string name="title_report">Raporlama</string>
     <string name="title_settings">Ayarlar</string>
     <string name="title_activity_main_navigation">MainNavigationActivity</string>
 
@@ -58,8 +59,31 @@
 
 
     <string name="transport_id" translatable="false">123</string>
-    <string name="firebase_path" translatable="false">locations</string>
+    <string name="firebase_location_path" translatable="false">locations</string>
+    <string name="firebase_report_path" translatable="false">reports</string>
     <string name="title_activity_maps">Map</string>
 
+    //Setting Informations
+    <string name="btn_sign_out">Çıkış Yap</string>
+    <string name="sifre_error">Şifre değiştirme başarısız.</string>
+    <string name="sifre_complete">Şifreniz başarıyla güncellenmiştir.</string>
+    <string name="minimum_setting">Lütfen uygun bir giriş yapınız.</string>
+    <string name="surucu_error">Sürücü değiştirme başarısız.</string>
+    <string name="surucu_complete">Sürücü başarıyla güncellenmiştir.</string>
+    <string name="plaka_error">Başarısız, bu plakaya kayıtlı bir kullanıcı olmadığından emin olunuz.</string>
+    <string name="plaka_complete">Plaka başarıyla güncellenmiştir.</string>
+
+
+    <string name="aralik_prompt">Lütfen aralık belirleyiniz.</string>
+
+    <string-array name="aralik_arrays">
+        <item>Son Gün</item>
+        <item>7 Günlük</item>
+        <item>15 Günlük</item>
+        <item>1 Aylık</item>
+        <item>Tümü</item>
+    </string-array>
+
+    <string name="choice_report">Seçim</string>
 
 </resources>

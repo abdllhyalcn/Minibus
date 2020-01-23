@@ -1,25 +1,15 @@
 package com.example.minibus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Switch;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private SwitchMaterial rememberMe;
     private ProgressBar progressBar;
 
-    public static String  PREFS_NAME="authentication";
+    public static String PREFS_NAME="authentication";
     public static String PREF_USERNAME="username";
     public static String PREF_PASSWORD="password";
 
@@ -49,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-       if (auth.getCurrentUser() == null) {
+       if (auth.getCurrentUser() != null) {
 
            // auth.signOut();
             startActivity(new Intent(LoginActivity.this, MainNavigationActivity.class));
@@ -117,7 +107,7 @@ public class LoginActivity extends AppCompatActivity {
                         // If sign in fails, display a message to the user. If sign in succeeds
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
-                        progressBar.setVisibility(View.GONE);
+                        progressBar.setVisibility(View.INVISIBLE);
                         if (!task.isSuccessful()) {
                             // there was an error
                             Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
@@ -127,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                             }else{
                                 deleteUser();
                             }
-                            Toast.makeText(getApplicationContext(), auth.getUid(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), auth.getUid(), Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(LoginActivity.this, MainNavigationActivity.class);
                             startActivity(intent);
                             finish();

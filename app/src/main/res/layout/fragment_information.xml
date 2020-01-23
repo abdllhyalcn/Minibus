@@ -17,6 +17,7 @@
         android:layout_marginBottom="20dp">
 
         <RadioGroup
+            android:id="@+id/radiogroup"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:checkedButton="@+id/trafik_cok"
@@ -60,8 +61,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="4dp"
                 android:hint="@string/hint_custom_notfy"
-                android:visibility="gone"
-                app:errorEnabled="true">
+                app:errorEnabled="true"
+                android:visibility="gone">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/custom_notfy_edit_text"

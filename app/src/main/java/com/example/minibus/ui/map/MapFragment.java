@@ -1,17 +1,20 @@
 package com.example.minibus.ui.map;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.example.minibus.MainNavigationActivity;
 import com.example.minibus.R;
@@ -20,8 +23,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -49,7 +52,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         View root = inflater.inflate(R.layout.fragment_map, container, false);
        // final TextView textView = root.findViewById(R.id.text_dashboard);
 
-        mMapView = (MapView) root.findViewById(R.id.mapView);
+        mMapView =  root.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 
         mMapView.onResume(); // needed to get the map to display immediately
@@ -79,15 +82,28 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
-
-
-
+        mMap.getUiSettings().setIndoorLevelPickerEnabled(true);
 
 
     }
 
+    private BitmapDescriptor getBitmapFromVectorDrawable(Context context, int drawableId) {
+        Drawable drawable =  AppCompatResources.getDrawable(context, drawableId);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            drawable = (DrawableCompat.wrap(drawable)).mutate();
+        }
+
+        Bitmap bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(),
+                drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+
+        return BitmapDescriptorFactory.fromBitmap(bitmap);
+    }
+
     private void subscribeToUpdates() {
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_path));
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference(getString(R.string.firebase_location_path));
         ref.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String previousChildName) {
@@ -96,14 +112,18 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
                 double lat = Double.parseDouble(value.get("latitude").toString());
                 double lng = Double.parseDouble(value.get("longitude").toString());
                 LatLng location = new LatLng(lat, lng);
-                mMarkers.put(key, mMap.addMarker(new MarkerOptions().title(key).position(location)));
+
+                MarkerOptions markerOptions=new MarkerOptions();
+                markerOptions.title(key);
+                markerOptions.position(location);
+                markerOptions.icon(getBitmapFromVectorDrawable(getContext(),R.drawable.ic_action_bus));
+
+                mMarkers.put(key, mMap.addMarker(markerOptions));
                 LatLngBounds.Builder builder = new LatLngBounds.Builder();
                 for (Marker marker : mMarkers.values()) {
                     builder.include(marker.getPosition());
                 }
-                if(key.equalsIgnoreCase("26m0008")){
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 300));
-                }else if(first){
+                if(first){
                     mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(builder.build(), 300));
                     first=false;
                 }
